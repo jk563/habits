@@ -1,10 +1,10 @@
-const STORAGE_KEY = 'habits';
+export const STORAGE_KEY = 'habits';
 
-const state = {
+export const state = {
     habits: []
 };
 
-function getLast7Days() {
+export function getLast7Days() {
     const days = [];
     const today = new Date();
 
@@ -20,18 +20,18 @@ function getLast7Days() {
     return days;
 }
 
-function saveToLocalStorage() {
+export function saveToLocalStorage() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.habits));
 }
 
-function loadFromLocalStorage() {
+export function loadFromLocalStorage() {
     const data = localStorage.getItem(STORAGE_KEY);
     if (data) {
         state.habits = JSON.parse(data);
     }
 }
 
-function addHabit(description) {
+export function addHabit(description) {
     if (!description.trim()) return;
 
     const habit = {
@@ -45,13 +45,13 @@ function addHabit(description) {
     render();
 }
 
-function deleteHabit(id) {
+export function deleteHabit(id) {
     state.habits = state.habits.filter(h => h.id !== id);
     saveToLocalStorage();
     render();
 }
 
-function toggleDay(habitId, date) {
+export function toggleDay(habitId, date) {
     const habit = state.habits.find(h => h.id === habitId);
     if (!habit) return;
 
@@ -64,7 +64,7 @@ function toggleDay(habitId, date) {
     saveToLocalStorage();
 }
 
-function createHabitElement(habit) {
+export function createHabitElement(habit) {
     const days = getLast7Days();
 
     const habitDiv = document.createElement('div');
@@ -113,7 +113,7 @@ function createHabitElement(habit) {
     return habitDiv;
 }
 
-function render() {
+export function render() {
     const habitList = document.getElementById('habitList');
     habitList.innerHTML = '';
 
@@ -130,7 +130,7 @@ function render() {
     });
 }
 
-function init() {
+export function init() {
     loadFromLocalStorage();
     render();
 
