@@ -64,11 +64,51 @@ A minimal vanilla JavaScript habit tracking application with local storage persi
 
 ## Usage
 
+### Local Development
+
 Open `index.html` in any modern browser. No build process or server required.
+
+### Production
+
+The application is deployed to AWS and available at: **https://habits.jamiekelly.com**
+
+## Deployment
+
+### Infrastructure
+
+The application is hosted as a static site on AWS with the following architecture:
+
+- **S3 Bucket** (eu-west-2): Static file storage
+- **CloudFront**: Global CDN with HTTPS
+- **ACM Certificate**: SSL/TLS encryption
+- **Route53**: DNS management
+
+See [infrastructure/README.md](infrastructure/README.md) for detailed setup instructions.
+
+### Automatic Deployment
+
+Changes pushed to the `main` branch automatically deploy to production via GitHub Actions:
+
+1. Files sync to S3 bucket
+2. CloudFront cache invalidated
+3. Changes live in ~2-3 minutes
+
+### Manual Deployment
+
+Trigger deployment manually from GitHub Actions → "Deploy to AWS" workflow.
+
+## Testing
+
+Run unit tests with Vitest:
+
+```bash
+npm install
+npm test
+```
 
 ## Future Enhancements
 
-- Backend persistence (currently local-only)
-- Cloud hosting
 - Multi-device synchronization
 - Habit streaks and statistics
+- Data export functionality
+- Mobile app version

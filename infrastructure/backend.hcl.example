@@ -1,0 +1,8 @@
+# Backend configuration file
+# Copy this to backend.hcl and fill in your values
+# Usage: terraform init -backend-config=backend.hcl
+
+bucket  = "your-terraform-state-bucket-name"
+key     = "habits/terraform.tfstate"
+region  = "eu-west-2"
+encrypt = true

@@ -1,0 +1,9 @@
+# Copy this file to terraform.tfvars and fill in the values
+# DO NOT commit terraform.tfvars to version control
+
+terraform_state_bucket = "your-terraform-state-bucket-name"
+aws_region            = "eu-west-2"
+domain_name           = "habits.jamiekelly.com"
+root_domain           = "jamiekelly.com"
+environment           = "production"
+project_name          = "habits"
